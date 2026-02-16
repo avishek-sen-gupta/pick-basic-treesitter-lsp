@@ -64,16 +64,17 @@ The LSP server in `pickbasic-lsp/` provides seven IDE features, all powered by t
 ### Prerequisites
 
 - Python 3.10+
+- [Poetry](https://python-poetry.org/) 2.x
 - A C compiler (`cc` / `gcc` / `clang`) — used to build the tree-sitter parser shared library on first run
 
 ### Installation
 
 ```bash
 cd pickbasic-lsp
-pip install -e .
+poetry install
 ```
 
-This installs the `pickbasic-lsp` command and the `pickbasic_lsp` Python package. Dependencies (`pygls`, `tree-sitter`) are installed automatically.
+This installs the `pickbasic-lsp` command and the `pickbasic_lsp` Python package into a Poetry-managed virtualenv. Dependencies (`pygls`, `tree-sitter`) are resolved automatically.
 
 On first use, the server compiles `tree-sitter-pickbasic/src/parser.c` into a shared library. This happens once and takes a few seconds.
 
@@ -81,10 +82,10 @@ On first use, the server compiles `tree-sitter-pickbasic/src/parser.c` into a sh
 
 ```bash
 # Via module
-python -m pickbasic_lsp
+poetry run python -m pickbasic_lsp
 
 # Or via the installed entry point
-pickbasic-lsp
+poetry run pickbasic-lsp
 ```
 
 The server communicates over **STDIO** using the Language Server Protocol.
@@ -93,8 +94,7 @@ The server communicates over **STDIO** using the Language Server Protocol.
 
 ```bash
 cd pickbasic-lsp
-pip install pytest
-pytest tests/ -v
+poetry run pytest tests/ -v
 ```
 
 ## Testing in VS Code
@@ -106,7 +106,7 @@ A ready-to-use VS Code extension is included at `pickbasic-lsp/editors/vscode/`.
 ```bash
 # 1. Install the LSP server
 cd pickbasic-lsp
-pip install -e .
+poetry install
 
 # 2. Install the VS Code extension dependencies
 cd editors/vscode
