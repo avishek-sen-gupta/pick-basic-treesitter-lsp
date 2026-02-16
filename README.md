@@ -141,44 +141,6 @@ The extension exposes one setting:
 |---|---|---|
 | `pickbasic.server.pythonPath` | `python3` | Path to the Python interpreter used to run the LSP server |
 
-### Other Editors
-
-The LSP server works with any editor that supports the Language Server Protocol over STDIO:
-
-**Neovim** (built-in LSP client):
-```lua
-vim.api.nvim_create_autocmd('FileType', {
-  pattern = 'basic',
-  callback = function()
-    vim.lsp.start({
-      name = 'pickbasic-lsp',
-      cmd = { 'python3', '-m', 'pickbasic_lsp' },
-      root_dir = vim.fn.getcwd(),
-    })
-  end,
-})
-vim.filetype.add({ extension = { bas = 'basic', bp = 'basic' } })
-```
-
-**Helix** (`~/.config/helix/languages.toml`):
-```toml
-[[language]]
-name = "pickbasic"
-scope = "source.pickbasic"
-file-types = ["bas", "bp", "b"]
-language-servers = ["pickbasic-lsp"]
-
-[language-server.pickbasic-lsp]
-command = "python3"
-args = ["-m", "pickbasic_lsp"]
-```
-
-**Emacs** (eglot, built-in since Emacs 29):
-```elisp
-(add-to-list 'eglot-server-programs
-  '(basic-mode . ("python3" "-m" "pickbasic_lsp")))
-```
-
 ## License
 
 This project is licensed under the MIT License. See [LICENSE.md](LICENSE.md) for details.
