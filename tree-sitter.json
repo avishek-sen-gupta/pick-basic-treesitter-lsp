@@ -1,0 +1,18 @@
+{
+  "grammars": [
+    {
+      "name": "pickbasic",
+      "camelCase": "pickBasic",
+      "scope": "source.pickbasic",
+      "path": ".",
+      "file-types": ["bp", "b", "bas", "basic"],
+      "highlights": "queries/highlights.scm",
+      "folds": "queries/folds.scm"
+    }
+  ],
+  "metadata": {
+    "version": "1.0.0",
+    "license": "MIT",
+    "description": "Tree-sitter grammar for UniVerse BASIC (Pick BASIC)"
+  }
+}
